@@ -4,11 +4,18 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class SheetTest {
+import es.upm.grise.Sheet;
 
+public class SheetTest {
+	@BEFORE
+	Sheet s = new Sheet();
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		assertEquals("#Error", s.get("AR@"));
+	}
+	@Test
+	public void test1() {
+		assertEquals("#Error", s.get("A"));
 	}
 
 }

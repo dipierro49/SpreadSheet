@@ -9,13 +9,45 @@ public class Sheet {
 	private ArrayList <String> visitedCells;
 
 	/**
-	 * @param cell	A String representing a cell (e.g. "A1", "XZ21", etc.)
+	 * @param cell A String representing a cell (e.g. "A1", "XZ21", etc.)
 	 * @return		The cell's contents (e.g. "1", "=5", "=1+B3", "=1+(B3*4)", etc.)
 	 */
-	public String get(String cell) {
-		return null;
+	String errore = "#Error";
+	public boolean isValid(String cell){
+		boolean valid = false;
+		for(int i = 0; i<cell.length(); i++) {
+			if (!(cell.length() > 1) ||
+					(!((cell.charAt(i) > 48 && cell.charAt(i) < 57) ||
+					(cell.charAt(i) > 65 && cell.charAt(i) < 122)))){
+						valid = false;
+						break;
+			}
+			else valid = true;
+		}
+		return valid;
 	}
-
+	
+	public boolean isCell(String cell){
+		boolean iscell = false;
+		if(cell.length() == 2 ){
+			if(((cell.charAt(0) >= 65) && (cell.charAt(0) <= 122)) &&
+					((cell.charAt(1) >= 48 && (cell.charAt(1) <= 57)))){
+				iscell = true;
+			}
+			else 
+				iscell = false;
+		
+		}
+		return iscell;
+	}
+	public String get(String cell) {
+	
+		if(isValid(cell)){
+			return cell;
+		}else 
+			return errore;
+	}
+	
 	/**
 	 * @param cell		A String representing a cell (e.g. "A1", "XZ21", etc.)
 	 * @param contents	Any String (a valid formula, or not)
@@ -33,7 +65,7 @@ public class Sheet {
 	 *				In case of circular references, return #Circular
 	 * @throws CircularReferenceException 
 	 */
-	public String evaluate(String cell) {
+	public String evaluate(String cell) throws CircularReferenceException{
 		
 		return null;
 	}
